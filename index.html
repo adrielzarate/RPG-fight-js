@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RPG</title>
+</head>
+
+<body>
+    <canvas id="game"></canvas>
+
+    <div>
+
+        <input type="number" id="oponentPos"> numero oponente
+        <br>
+        <input type="radio" value="attack" name="action" /> attack
+        <br>
+        <input type="radio" value="pass" name="action" /> pass
+        <br>
+        <input type="radio" value="cure" name="action" /> cure
+        <br>
+        <br>
+        <button id="btn">Act</button>
+    <div>
+
+</body>
+<script type="module" src="es6/start.js"></script>
+<script type="module" >
+    'use strict';
+    import mygame from './es6/start.js';
+
+    const aBtn = document.getElementById('btn');
+    const oponentPos = document.getElementById('oponentPos');
+    const action = document.getElementsByName('action');
+
+    aBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mygame.play(document.querySelector('input[name="action"]:checked').value, oponentPos.value);
+    });
+
+</script>
+
+</html>

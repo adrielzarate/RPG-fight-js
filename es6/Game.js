@@ -8,13 +8,13 @@ class Game {
         this.heroes = [];
         this.enemies = [];
 
-        this.playerTurn = true;
-        this.turnPosition = 0;
+        this.heroesTurn = true;
+        this.positionTurn = 0;
 
         this.generateCharacters(this.heroes, heroesData, Hero);
         this.generateCharacters(this.enemies, enemiesData, Enemy);
 
-        this.init();
+        this.checkTurn();
     }
 
     generateCharacters(type, data, classType) {
@@ -32,61 +32,57 @@ class Game {
         switch (todo) {
         case 'attack':
             oponent.damage(character.attack());
-            console.log('--> attack!');
             break;
         case 'pass':
             character.pass();
-            console.log('--> pass!');
             break;
         case 'cure':
-            // character.cure();
-            console.log('--> cure!');
+            character.cure();
             break;
         default:
             console.log('accion inexistente!');
             break;
         }
+    }
+
+    checkChangeTurn(band) {
+        if( this.positionTurn < band.length ) {
+            if(band[this.positionTurn].life <= 0) {
+                this.actions( band[this.positionTurn], 'pass' );
+                this.positionTurn++;
+            }
+        } else {
+            this.heroesTurn = !this.heroesTurn;
+            this.positionTurn = 0;
+        }
+    }
+
+    checkTurn() {
         this.init();
+        if (this.heroesTurn) {
+            this.checkChangeTurn(this.heroes);
+        } else {
+            this.checkChangeTurn(this.enemies);
+        }
+
+        if( this.heroesTurn ) { console.log('Heroes'); } else { console.log('Enemies'); }
+        console.log('Turno de personaje', this.positionTurn);
     }
 
     play(todo, oponentPosition) {
-
-        if (this.playerTurn && this.turnPosition < this.heroes.length && this.heroes[this.turnPosition].life > 0) {
-
-            this.actions( this.heroes[this.turnPosition], todo, this.enemies[oponentPosition] );
-
-            this.turnPosition++;
-            console.log('Turno de Heroe', this.turnPosition);
-
-            if( this.turnPosition >= this.heroes.length ) {
-                console.log('pasa a enemigos');
-                this.playerTurn = false;
-                this.turnPosition = 0;
-            }
-        } else if (this.turnPosition < this.enemies.length && this.enemies[this.turnPosition].life > 0) {
-            console.log('Turno de Enemigo', this.turnPosition);
-            // console.log('escoge attack, pass o cure');
-
-            this.turnPosition++;
-
-            this.actions( this.enemies[this.turnPosition], todo, this.heroes[oponentPosition] );
-
-            if( this.turnPosition >= this.enemies.length ) {
-                console.log('pasa a heroes');
-                this.playerTurn = true;
-                this.turnPosition = 0;
-            }
-        }
+        this.actions( this.heroes[this.positionTurn], todo, this.enemies[oponentPosition] );
+        this.positionTurn++;
+        this.checkTurn();
     }
 
     init() {
-        console.log('-------------------------------------------------------------------------------------------------');
-        console.log('play: attack, pass o cure');
 
-        console.log('======================================================');
+        console.log('-------------------------------------------------------------------------------------------------');
+
         for( let i = 0; i < this.heroes.length; i++ ) {
             console.log(this.heroes[i].name + ' : ' + this.heroes[i].life);
         }
+
         console.log('--------------');
 
         for( let i = 0; i < this.enemies.length; i++ ) {
@@ -94,6 +90,7 @@ class Game {
         }
 
         console.log('======================================================');
+
     }
 
 }

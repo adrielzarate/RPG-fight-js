@@ -8,14 +8,19 @@ class Character {
     }
 
     attack() {
+        console.log('--> attack!');
         return this.power * .5;
     }
 
     cure() {
+        console.log('--> cure!');
         this.life += -(this.life - 100) / 10;
     }
 
-    pass() {}
+    pass() {
+        console.log('--> pass!');
+        // return 'pass';
+    }
 
     damage(enemyAttack) {
         this.life -= enemyAttack;

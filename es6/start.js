@@ -17,6 +17,11 @@ const mygame = rpg({
         },
         {
             name: 'heroe2',
+            life: 0,
+            power: 100
+        },
+        {
+            name: 'heroe3',
             life: 100,
             power: 100
         }
@@ -29,6 +34,11 @@ const mygame = rpg({
         },
         {
             name: 'enemy2',
+            life: 100,
+            power: 100
+        },
+        {
+            name: 'enemy3',
             life: 100,
             power: 100
         }

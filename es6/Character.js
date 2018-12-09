@@ -1,30 +1,22 @@
 'use strict';
 
 class Character {
-    constructor(name = 'character 1', life = 100, power = 100) {
+    constructor(id, name = 'character 1', life = 100, magic = 100) {
+        this.id = id;
         this.name = name;
         this.life = life;
-        this.power = power;
+        this.magic = magic;
     }
 
     attack() {
         console.log('--> attack!');
-        return this.power * .5;
-    }
-
-    cure() {
-        console.log('--> cure!');
-        this.life += -(this.life - 100) / 10;
-    }
-
-    pass() {
-        console.log('--> pass!');
-        // return 'pass';
+        return this.magic * .5;
     }
 
     damage(enemyAttack) {
         this.life -= enemyAttack;
     }
+
 }
 
 export default Character;

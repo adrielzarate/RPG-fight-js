@@ -2,48 +2,59 @@
 
 import Game from './Game.js';
 
-function rpg(characters) {
-    return new Game(characters.heroes, characters.enemies);
-    // console.log(game.heroes);
-    // console.log(game.enemies);
-}
-
-const mygame = rpg({
+const characters = {
     heroes: [
         {
             name: 'heroe1',
             life: 100,
-            power: 100
+            magic: 100,
+            pic: '../assets/img/hero.png'
         },
         {
             name: 'heroe2',
-            life: 0,
-            power: 100
+            life: 1,
+            magic: 100,
+            pic: '../assets/img/hero.png'
         },
         {
             name: 'heroe3',
-            life: 100,
-            power: 100
+            life: 80,
+            magic: 100,
+            pic: '../assets/img/hero.png'
+        }
+        ,
+        {
+            name: 'heroe4',
+            life: 80,
+            magic: 100,
+            pic: '../assets/img/hero.png'
         }
     ],
     enemies: [
         {
             name: 'enemy1',
             life: 100,
-            power: 100
+            magic: 100,
+            pic: '../assets/img/enemy.png'
         },
         {
             name: 'enemy2',
             life: 100,
-            power: 100
+            magic: 100,
+            pic: '../assets/img/enemy.png'
         },
         {
             name: 'enemy3',
             life: 100,
-            power: 100
+            magic: 100,
+            pic: '../assets/img/enemy.png'
         }
     ]
-});
+};
+
+const mygame = () => new Game(characters);
+
+mygame();
 
 export default mygame;
 

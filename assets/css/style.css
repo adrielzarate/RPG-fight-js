@@ -1,0 +1,153 @@
+
+/* RESET */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/***************
+    HELPERS
+****************/
+
+.text-right {
+    text-align: right;
+}
+
+.w-100vw {
+    width: 100vw;
+}
+
+.w-100p {
+    width: 100%;
+}
+
+.h-50vh {
+    height: 50vh;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.focus {
+    border: blue solid thin;
+}
+
+.b-r {
+    border: red solid thin;
+}
+
+/***************
+    UI 
+****************/
+
+/* STAGE */
+
+#stage {
+    background-color: chartreuse;
+}
+
+/* HEROES AREA */
+
+#heroesArea {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 40vh;
+}
+
+/* ENEMIES AREA */
+
+#enemiesArea {
+    background-color: yellowgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+/* ACTIONS */
+
+#actions-panel {
+    height: 10vh;
+    padding: 20px;
+}
+
+#actions-panel .character-picture {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    border: orange solid thin;
+    display: block;
+    overflow: hidden;
+}
+
+/* NOTIFICATIONS */
+
+/***************
+    CHARACTERS 
+****************/
+
+/* COMMON */
+
+.character-picture {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: orange solid thin;
+    display: block;
+    overflow: hidden;
+}
+
+/* HERO */
+
+.hero {
+    width: 40%;
+    height: 30%;
+    background-color: aqua;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+}
+
+.hero:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.hero * {
+    margin: 0 5px 5px;
+}
+
+/* ENEMY */
+
+.enemy {
+    width: 50px;
+    height: 50px;
+    background-color: crimson;
+    margin: 20px;
+}

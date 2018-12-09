@@ -4,40 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <title>RPG</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <canvas id="game"></canvas>
 
-    <div>
+    <div id="stage">
 
-        <input type="number" id="oponentPos"> numero oponente
+        <div class="d-flex" id="enemiesArea"></div>
+
+        <div class="d-flex" id="heroesArea"></div>
+
+        <div class="d-flex" id="actions-panel">
+            <div id="panel-name" class="character-picture"></div>
+            <div class="w-100p">
+
+                <div class="d-flex">
+                    <div class="flex-grow-1 b-r" id="panel-name"></div>
+                    <div class="flex-grow-1 d-flex b-r">
+                        <div><3</div> <!-- life -->
+                        <div id="panel-life"></div>
+                    </div>
+                    <div class="flex-grow-1 d-flex b-r">
+                        <div>*</div> <!-- magic -->
+                        <div id="panel-magic"></div>
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="action flex-grow-1">Attack</div>
+                    <div class="action flex-grow-1">Cure</div>
+                    <div class="action flex-grow-1">Pass</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-none" id="notifications"></div>
+
+    </div>
+
+    <!-- <div>
+        <input type="number" id="heroeTurn">
         <br>
-        <input type="radio" value="attack" name="action" /> attack
+        <input type="radio" value="attack" name="actionItem" /> attack
         <br>
-        <input type="radio" value="pass" name="action" /> pass
+        <input type="radio" value="pass" name="actionItem" /> pass
         <br>
-        <input type="radio" value="cure" name="action" /> cure
+        <input type="radio" value="cure" name="actionItem" /> cure
         <br>
+        <button id="setActionBtn">Action</button>
+
+        <hr>
+
+        <input type="number" id="attackCharacter"> <button id="setOponentToAttackBtn">enemigo a atacar</button>
         <br>
-        <button id="btn">Act</button>
-    <div>
+        <input type="number" id="cureCharacter"> <button id="setFriendToCureBtn">heroe a curar</button>
+    <div> -->
 
 </body>
+
 <script type="module" src="es6/start.js"></script>
-<script type="module" >
-    'use strict';
 
-    import mygame from './es6/start.js';
+<script type="module">
+'use strict';
 
-    const aBtn = document.getElementById('btn');
-    const oponentPos = document.getElementById('oponentPos');
-    const action = document.getElementsByName('action');
+import mygame from './es6/start.js';
 
-    aBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mygame.play(document.querySelector('input[name="action"]:checked').value, oponentPos.value);
-    });
+// const heroeTurn = document.getElementById('heroeTurn');
+
+// const setActionBtn = document.getElementById('setActionBtn');
+// const actionItem = document.getElementsByName('actionItem');
+
+// const setOponentToAttackBtn = document.getElementById('setOponentToAttackBtn');
+// const setFriendToCureBtn = document.getElementById('setFriendToCureBtn');
+
+// setActionBtn.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     // mygame.play(document.querySelector('input[name="action"]:checked').value, oponentPos.value);
+//     mygame.setAction(heroeTurn.value, document.querySelector('input[name="actionItem"]:checked').value);
+// });
+
+// setOponentToAttackBtn.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     mygame.setOponentToAttack(document.getElementById('attackCharacter').value);
+// });
+
+// setFriendToCureBtn.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     mygame.setFriendToCure(document.getElementById('cureCharacter').value);
+// });
+
 
 </script>
 

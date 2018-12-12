@@ -143,6 +143,17 @@ body {
     margin: 0 5px 5px;
 }
 
+.enabled {
+    animation-name: enabled-animation;
+    animation-iteration-count: infinite;
+    animation-duration: .2s;
+}
+
+@keyframes enabled-animation {
+    from {border-color: red;}
+    to {border-color: white;}
+  }
+
 /* ENEMY */
 
 .enemy {

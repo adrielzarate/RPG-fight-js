@@ -4,6 +4,8 @@ import { default as HeroClass } from './Hero.js';
 import { heroTemplate } from '../templates/Hero.js';
 import { default as EnemyClass } from './Enemy.js';
 import { enemyTemplate } from '../templates/Enemy.js';
+import { actionPanel } from './actionPanel.js';
+import { DOMUtilities } from './DOMUtilities.js';
 
 class Game {
 
@@ -16,13 +18,12 @@ class Game {
 
         this.heroesArea = document.getElementById('heroesArea');
         this.enemiesArea = document.getElementById('enemiesArea');
-
-        this.panelName = document.getElementById('panel-name');
-        this.panelLife = document.getElementById('panel-life');
-        this.panelMagic = document.getElementById('panel-magic');
         
         this.heroTemplate = heroTemplate;
         this.enemyTemplate = enemyTemplate;
+
+        this.actionPanel = actionPanel;
+        this.DOMUtilities = DOMUtilities;
 
         // this.heroesTurn = true;
         this.currentTurn = {
@@ -45,9 +46,6 @@ class Game {
 
         // this.checkTurn();
     }
-
-    // setCharacterstState(type, data, classType) {}
-    // generateDOMCharacters(type, data, classType) {}
 
     generateCharacters(type, character, classType) {
 
@@ -79,52 +77,24 @@ class Game {
 
     start() {
         const heroesDOM = document.querySelectorAll('.hero');
+
         heroesDOM.forEach( heroe => {
-            // this.attachClick(heroe, this.addClassFocus.bind(this));
-            this.attachClick(heroe, this.enableHeroeActions.bind(this));
+            this.DOMUtilities.attachClick(heroe, this.enableHeroeActions.bind(this));
         });
     }
 
-    getSiblings(elTarget) {
-        return [...elTarget.parentElement.children].filter( selfTarget => selfTarget != elTarget );
-    }
-
-    addClassFocus(elTarget) {
-        const siblings = this.getSiblings(elTarget);
-        siblings.forEach( sibling => {
-            sibling.classList.remove('focus');
-        });
-        elTarget.classList.add('focus');
-    }
-
-    enableHeroeActions(elTarget, clickEvent) {
-
+    enableHeroeActions(elTarget) {
         const heroeId = elTarget.attributes.id.textContent;
-        const actionsDOM = document.querySelectorAll('.action');
-
-        actionsDOM.forEach( action => {
-            this.attachClick(action, this.addClassFocus.bind(this));
+        this.DOMUtilities.setFocusStyle(elTarget, 'focus');
+        this.actionPanel.setData({
+            name: this.heroes[heroeId].name, 
+            life: this.heroes[heroeId].life, 
+            magic: this.heroes[heroeId].magic
         });
-
-        this.addClassFocus(elTarget);
-
-        this.panelName.textContent = this.heroes[heroeId].name;
-        this.panelLife.textContent = this.heroes[heroeId].life;
-        this.panelMagic.textContent = this.heroes[heroeId].magic;
-
     }
 
-    attachClick(characterTarget, action) {
-        characterTarget.addEventListener('click', (e) => {
-            console.log('click added!');
-            action(characterTarget, e);
-        }, false);
-    }
+    attack(attacker, attacked) {
 
-    detachClick(characterTarget) {
-        characterTarget.removeEventListener('click', (e) => {
-            console.log('click removed!');
-        });
     }
 
     actions(character, todo, oponent) {

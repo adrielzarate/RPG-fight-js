@@ -77,8 +77,8 @@ class Game {
 
     start() {
         const heroesDOM = document.querySelectorAll('.hero');
-
         heroesDOM.forEach( heroe => {
+            this.DOMUtilities.addClass(heroe, 'enabled');
             this.DOMUtilities.attachClick(heroe, this.enableHeroeActions.bind(this));
         });
     }
@@ -93,9 +93,7 @@ class Game {
         });
     }
 
-    attack(attacker, attacked) {
-
-    }
+    //------------------------------------------------------------------// 
 
     actions(character, todo, oponent) {
         switch (todo) {
@@ -116,8 +114,6 @@ class Game {
         }
         this.positionTurn++;
     }
-
-    doAction() {}
 
     checkChangeTurn(team) {
         if( this.positionTurn < team.length ) {
@@ -169,7 +165,6 @@ class Game {
         // play('attack', heroPosition);
     }
 
-    // play(todo, oponentPosition) {
     setAction(currentPlayer, todo) {
         // this.actions( this.heroes[this.positionTurn], todo, this.enemies[oponentPosition] );
 
